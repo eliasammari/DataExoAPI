@@ -56,13 +56,15 @@ alembic history
 ### Lancement de l'application 
 
 **main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
-```bash```
-```bash```
+```bash 
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
 
 **UnitTests.py :** Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
-```bash uvicorn main:app --host 0.0.0.0 --port 8000
- ```
-```bash pytest UnitTests.py```
+
+```bash 
+pytest UnitTests.py
+```
 
 ### Utilisation de Docker Compose
 
@@ -70,6 +72,9 @@ Utilisez Docker Compose pour configurer l'environnement de base de données avec
 
 Configurer le fichier dockerfile pour 
 Configurer le fichier docker-compose.yml pour : 
+```bash 
+docker-compose up
+```
 
 ### Utilisation d'un Cache Redis
 
