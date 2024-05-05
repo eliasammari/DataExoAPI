@@ -8,14 +8,16 @@ Pour développer ce projet, vous devez d'abord configurer un environnement virtu
 
 ```bash
 python -m venv DataExo
-```
+
 source DataExo/bin/activate
+
 
 ### Installation des Dépendances
 
 Installez les dépendances du projet à l'aide du fichier requirements.txt.
 
-*  pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
 
 #### Création de la Base de Données
 
@@ -33,26 +35,30 @@ Fichier alembic.ini : Configuration principale d'Alembic, specifier le chemin d'
 Fichier env.py : Importer Base depuis le fichier models.
 
 * Initialisation des Migrations
-Commande Bash : alembic init alembic
+```bash
+alembic init alembic
 
 * Génération d'une Migration
-Commande Bash : alembic revision -m "create_users_table"
+```bash
+alembic revision -m "create_users_table"
 
 * Application des Migrations
-Commande Bash : alembic upgrade head
+```bash
+alembic upgrade head
 
 * Validation des Migrations
-Commande Bash : alembic history
+```bash
+alembic history
 
 ### Lancement de l'application 
 
 **main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
-*
-*
+```bash
+```bash
 
 **UnitTests.py :** Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
-*
-*
+```bash
+```bash
 
 ### Utilisation de Docker Compose
 
