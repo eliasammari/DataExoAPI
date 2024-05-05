@@ -1,15 +1,15 @@
-Documentation du Projet DataExoAPI
+# Documentation du Projet DataExoAPI
 
 Ce projet met en œuvre une API FastAPI avec une base de données SQLAlchemy, des migrations gérées par Alembic, et utilise Redis comme système de cache pour améliorer les performances de l'API.
 
-Environnement Virtuel (DataExo)
+### Environnement Virtuel (DataExo)
 
 Pour développer ce projet, vous devez d'abord configurer un environnement virtuel.
 
 python -m venv DataExo
 source DataExo/bin/activate
 
-Installation des Dépendances
+### Installation des Dépendances
 
 Installez les dépendances du projet à l'aide du fichier requirements.txt.
 
@@ -23,17 +23,15 @@ Modèles SQLAlchemy (models.py)
 
 Les modèles SQLAlchemy sont définis dans le fichier models.py. La classe User définit la table users avec les colonnes id, username, et email.
 
-Gestion des Migrations avec Alembic
+### Gestion des Migrations avec Alembic
 
-Configuration d'Alembic
-Fichier alembic.ini : Configuration principale d'Alembic.
-Fichier env.py : Environnement d'Alembic pour l'application SQLAlchemy.
+Configuration d'Alembic : 
+
+Fichier alembic.ini : Configuration principale d'Alembic, specifier le chemin d'acces vers la bd en remplacant 
+Fichier env.py : Importer Base depuis le fichier models.
 
 Initialisation des Migrations
 Commande Bash : alembic init alembic
-
-Création des Scripts de Migration
-Fichier migrations/versions/XXXX_create_users_table.py
 
 Génération d'une Migration
 Commande Bash : alembic revision -m "create_users_table"
