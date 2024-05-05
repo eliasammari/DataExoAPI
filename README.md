@@ -83,6 +83,8 @@ sudo chmod 666 /var/run/docker.sock
 sudo systemctl restart docker
 
 docker-compose build
+
+docker-compose up
 ```
 
 ### Utilisation d'un Cache Redis
