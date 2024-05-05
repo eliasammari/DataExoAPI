@@ -8,7 +8,7 @@ Pour développer ce projet, vous devez d'abord configurer un environnement virtu
 
 ```bash
 python -m venv DataExo
-
+```
 source DataExo/bin/activate
 
 
@@ -18,7 +18,7 @@ Installez les dépendances du projet à l'aide du fichier requirements.txt.
 
 ```bash
 pip install -r requirements.txt
-
+```
 #### Création de la Base de Données
 
 La base de données mydatabase.db est créée dans le fichier db.py.
@@ -37,19 +37,19 @@ Fichier env.py : Importer Base depuis le fichier models.
 * Initialisation des Migrations
 ```bash
 alembic init alembic
-
+```
 * Génération d'une Migration
 ```bash
 alembic revision -m "create_users_table"
-
+```
 * Application des Migrations
 ```bash
 alembic upgrade head
-
+```
 * Validation des Migrations
 ```bash
 alembic history
-
+```
 ### Lancement de l'application 
 
 **main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
