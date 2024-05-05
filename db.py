@@ -8,5 +8,3 @@ engine = create_async_engine(DATABASE_URL)
 def get_session():
     SessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=engine)
     return SessionLocal()
-
-#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 ma clé d'acces git 
