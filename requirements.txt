@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+databases
+aiosqlite
+SQLAlchemy
+alembic
+pytest
+pytest-asyncio
+aiohttp
+httpx
+aioredis
