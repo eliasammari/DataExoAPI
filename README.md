@@ -6,14 +6,16 @@ Ce projet met en œuvre une API FastAPI avec une base de données SQLAlchemy, de
 
 Pour développer ce projet, vous devez d'abord configurer un environnement virtuel.
 
-"python -m venv DataExo"
-"source DataExo/bin/activate"
+```bash
+python -m venv DataExo
+```
+source DataExo/bin/activate
 
 ### Installation des Dépendances
 
 Installez les dépendances du projet à l'aide du fichier requirements.txt.
 
-pip install -r requirements.txt
+*  pip install -r requirements.txt
 
 #### Création de la Base de Données
 
@@ -42,11 +44,15 @@ Commande Bash : alembic upgrade head
 * Validation des Migrations
 Commande Bash : alembic history
 
-**main.py** 
-Le fichier main.py définit les routes de l'API FastAPI.
+### Lancement de l'application 
 
-**UnitTests.py**
-Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
+**main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
+*
+*
+
+**UnitTests.py :** Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
+*
+*
 
 ### Utilisation de Docker Compose
 
@@ -55,7 +61,7 @@ Utilisez Docker Compose pour configurer l'environnement de base de données avec
 Configurer le fichier dockerfile pour 
 Configurer le fichier docker-compose.yml pour : 
 
-Utilisation d'un Cache Redis
+### Utilisation d'un Cache Redis
 
 Intégrez Redis comme système de cache pour l'API.
 
@@ -66,5 +72,3 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 
 # Exemple de mise en cache
 r.set('user:1', '{"id": 1, "username": "john_doe", "email": "john@example.com"}')
-
-Ce fichier README fournit une documentation détaillée sur le projet DataExoAPI, expliquant chaque étape du développement de l'API, y compris la configuration de l'environnement virtuel, l'installation des dépendances, la gestion des migrations avec Alembic, l'utilisation de Docker Compose pour la base de données, et l'intégration d'un cache Redis pour améliorer les performances de l'API.
