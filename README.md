@@ -15,7 +15,7 @@ Installez les dépendances du projet à l'aide du fichier requirements.txt.
 
 pip install -r requirements.txt
 
-Création de la Base de Données
+#### Création de la Base de Données
 
 La base de données mydatabase.db est créée dans le fichier db.py.
 
@@ -30,16 +30,16 @@ Configuration d'Alembic :
 Fichier alembic.ini : Configuration principale d'Alembic, specifier le chemin d'acces vers la bd en remplacant 
 Fichier env.py : Importer Base depuis le fichier models.
 
-Initialisation des Migrations
+* Initialisation des Migrations
 Commande Bash : alembic init alembic
 
-Génération d'une Migration
+* Génération d'une Migration
 Commande Bash : alembic revision -m "create_users_table"
 
-Application des Migrations
+* Application des Migrations
 Commande Bash : alembic upgrade head
 
-Validation des Migrations
+* Validation des Migrations
 Commande Bash : alembic history
 
 **main.py** 
