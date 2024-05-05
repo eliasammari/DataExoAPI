@@ -57,13 +57,13 @@ alembic history
 
 **main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
 ```bash 
-uvicorn main:app --host 0.0.0.0 --port 8000
+uvicorn main:app --reload
 ```
 
 **UnitTests.py :** Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
 
 ```bash 
-pytest UnitTests.py
+pytest -v UnitTests.py
 ```
 
 # Utilisation de Docker Compose
@@ -75,9 +75,14 @@ Le fichier Dockerfile est configuré pour construire l'image Docker de votre app
 
 * Configuration du fichier docker-compose.yml
 Le fichier docker-compose.yml est utilisé pour définir les services de votre application, y compris la base de données et potentiellement l'API FastAPI. Configurez ce fichier pour définir les services nécessaires, tels que les volumes, les ports exposés, et les dépendances entre les services.
-
 ```bash 
-docker-compose up
+sudo usermod -aG docker <your_username>
+
+sudo chmod 666 /var/run/docker.sock
+
+sudo systemctl restart docker
+
+docker-compose build
 ```
 
 ### Utilisation d'un Cache Redis
