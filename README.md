@@ -66,12 +66,16 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 pytest UnitTests.py
 ```
 
-### Utilisation de Docker Compose
+# Utilisation de Docker Compose
 
 Utilisez Docker Compose pour configurer l'environnement de base de données avec le fichier. 
 
-Configurer le fichier dockerfile pour 
-Configurer le fichier docker-compose.yml pour : 
+* Configuration du fichier Dockerfile
+Le fichier Dockerfile est configuré pour construire l'image Docker de votre application FastAPI. Assurez-vous d'inclure toutes les dépendances nécessaires et de définir la commande de démarrage de votre application.
+
+* Configuration du fichier docker-compose.yml
+Le fichier docker-compose.yml est utilisé pour définir les services de votre application, y compris la base de données et potentiellement l'API FastAPI. Configurez ce fichier pour définir les services nécessaires, tels que les volumes, les ports exposés, et les dépendances entre les services.
+
 ```bash 
 docker-compose up
 ```
