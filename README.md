@@ -24,17 +24,19 @@ pip install -r requirements.txt
 
 La base de données mydatabase.db est créée dans le fichier db.py.
 
-Modèles SQLAlchemy (models.py)
-
 Les modèles SQLAlchemy sont définis dans le fichier models.py. La classe User définit la table users avec les colonnes id, username, et email.
 
 ### Gestion des Migrations avec Alembic
 
 Configuration d'Alembic : 
 
-Fichier alembic.ini : Configuration principale d'Alembic, specifier le chemin d'acces vers la bd en remplacant 
-Fichier env.py : Importer Base depuis le fichier models.
-
+* Fichier alembic.ini : Configuration principale d'Alembic, specifier le chemin d'acces vers la bd en remplacant **sqlalchemy.url = sqlite:///mydatabase.db**
+* Fichier env.py : Importer Base depuis le fichier models.
+ python
+```python
+from models import Base
+target_metadata = Base.metadata
+```
 * Initialisation des Migrations
 ```bash
 alembic init alembic
