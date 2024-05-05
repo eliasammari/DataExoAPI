@@ -8,4 +8,5 @@ pytest
 pytest-asyncio
 aiohttp
 httpx
+redis
 aioredis
