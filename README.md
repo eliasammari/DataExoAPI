@@ -83,7 +83,18 @@ docker-compose up
 ### Utilisation d'un Cache Redis
 
 Intégrez Redis comme système de cache pour l'API.
-
+* Installer redis :
+ ```bash
+  sudo apt install redis-server
+```
+* Démmarer redis 
+```bash 
+sudo systemctl start redis-server
+```
+* Test de connexion :
+```bash
+  redis-cli ping
+```
 import redis
 
 # Connexion à Redis
