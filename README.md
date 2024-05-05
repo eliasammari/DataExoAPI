@@ -6,8 +6,8 @@ Ce projet met en œuvre une API FastAPI avec une base de données SQLAlchemy, de
 
 Pour développer ce projet, vous devez d'abord configurer un environnement virtuel.
 
-python -m venv DataExo
-source DataExo/bin/activate
+"python -m venv DataExo"
+"source DataExo/bin/activate"
 
 ### Installation des Dépendances
 
