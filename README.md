@@ -9,8 +9,9 @@ Pour développer ce projet, vous devez d'abord configurer un environnement virtu
 ```bash
 python -m venv DataExo
 ```
+```bash
 source DataExo/bin/activate
-
+```
 
 ### Installation des Dépendances
 
@@ -53,12 +54,13 @@ alembic history
 ### Lancement de l'application 
 
 **main.py :**  Le fichier main.py définit les routes de l'API FastAPI.
-```bash
-```bash
+```bash```
+```bash```
 
 **UnitTests.py :** Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
-```bash
-```bash
+```bash uvicorn main:app --host 0.0.0.0 --port 8000
+ ```
+```bash pytest UnitTests.py```
 
 ### Utilisation de Docker Compose
 
