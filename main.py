@@ -4,7 +4,11 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy import select
 from db import get_session, engine
 from models import User, UserSchema, Base
-import aioredis
+import redis
+import json
+import logging 
+logger = logging.getLogger(__name__)
+
 from functools import wraps
 import tracemalloc
 tracemalloc.start()
@@ -12,43 +16,48 @@ tracemalloc.start()
 
 app = FastAPI()
 
-
-# ------------------------------------------
-#           Connexion Redis
-# ------------------------------------------
-
-redis_pool = None
-
-async def get_redis_pool():
-    global redis_pool
-    if not redis_pool:
-        redis_pool = await aioredis.create_redis_pool("redis://localhost")
-    return redis_pool
-
-# Middleware pour le cache avec Redis
-async def cache_middleware(request, call_next, redis_pool=Depends(get_redis_pool)):
-    key = request.url.path
-    cached_response = await redis_pool.get(key)
-    if cached_response:
-        return cached_response
-    response = await call_next(request)
-    await redis_pool.set(key, response, expire=60)  # Cache valide pendant 60 secondes
-    return response
-
-app.middleware("http")(cache_middleware)
-
-
-# ------------------------------------------
-#             API routes
-# ------------------------------------------
-
 async def get_db():
     db = get_session()
     try:
         yield db
     finally:
         await db.close()
+        
+# ------------------------------------------
+#           Connexion Redis
+# ------------------------------------------
 
+redis = redis.Redis(host='localhost', port=6379, db=0)
+
+@app.get("/users/cache/{user_id}")
+def get_user_with_cache(user_id: int, db: Session = Depends(get_db)):
+    try:
+        cached_data = redis.get(f"user:{user_id}")
+        if cached_data is not None:
+            cached_data_str = cached_data.decode('utf-8')
+            cached_data_json = cached_data_str.replace("'", '"')
+            try:
+                return json.loads(cached_data_json)
+            except json.JSONDecodeError as e:
+                cached_data = None
+
+        db_user = db.query(User).filter(User.id == user_id).first()
+        if db_user is None:
+            raise HTTPException(status_code=404, detail="Utilisateur non trouvé")
+
+        user_data = {"id": db_user.id, "username": db_user.username, "email": db_user.email}
+        redis.set(f"user:{user_id}", json.dumps(user_data), ex=60)
+
+        return user_data
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Erreur interne du serveur")
+
+
+
+# ------------------------------------------
+#             API routes
+# ------------------------------------------
 
 @app.get("/")
 async def read_root():
@@ -94,6 +103,9 @@ async def delete_user(user_id: int, db: AsyncSession = Depends(get_db)):
 
     await db.delete(db_user)
     await db.commit()
+    
+    await redis.delete(f"/users/{user_id}")
+    
     return {"message": "Utilisateur supprimé avec succès"}
 
 @app.delete("/users")
@@ -124,4 +136,7 @@ async def update_user(user_id: int, user: UserSchema, db: AsyncSession = Depends
     db_user.email = user.email
     await db.commit()
     await db.refresh(db_user)
+    
+    await redis.delete(f"/users/{user_id}")
+    
     return db_user
