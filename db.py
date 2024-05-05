@@ -8,3 +8,4 @@ engine = create_async_engine(DATABASE_URL)
 def get_session():
     SessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=engine)
     return SessionLocal()
+
