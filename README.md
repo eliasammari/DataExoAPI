@@ -42,7 +42,13 @@ Commande Bash : alembic upgrade head
 Validation des Migrations
 Commande Bash : alembic history
 
-Utilisation de Docker Compose
+**main.py** 
+Le fichier main.py définit les routes de l'API FastAPI.
+
+**UnitTests.py**
+Le fichier UnitTests.py contient les tests unitaires pour chaque fonctionnalité de l'API
+
+### Utilisation de Docker Compose
 
 Utilisez Docker Compose pour configurer l'environnement de base de données avec le fichier. 
 
